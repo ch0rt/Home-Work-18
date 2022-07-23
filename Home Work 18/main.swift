@@ -56,29 +56,25 @@ print(a.sum())
 //4. հայտարարել protocol Editable անունով որը պետք է սահմանի մեկ ֆունկցիա edit(newValue: Int) -> Int անունով որը  վերադարձնում հին արժեքը
 
 protocol Editable {
-   func edit(newValue: Int) -> Int
+    mutating func edit(newValue: Int) -> Int
 }
 
 //5. Int -ի համար գրել Extension որը պետք է բավարարի Editable protocol-ի պահանջներին Editable protocol-ի edit ֆունկցիան պետք է ընդունի նոր արժեք որը փոխելու է ընտացիք արժեքը իսկ հին արժեքը պեքտ է վերադաձնել
   
 
 extension Int: Editable {
-
-    func edit(newValue: Int) -> Int {
-        return newValue
-    }
-
-    func edit(newValue:inout Int, currentValue: Int ) -> Int {
-
-        let temp = newValue
-        newValue = currentValue
+    mutating func edit(newValue: Int) -> Int {
         
-        return temp
+        let oldValue = self
+        self = newValue
+        return oldValue
     }
 }
 
-var val = 1
 
-print(val.edit(newValue: &val, currentValue: 7))
+
+
+
+
 
 
