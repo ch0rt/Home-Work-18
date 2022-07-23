@@ -71,9 +71,11 @@ extension Int: Editable {
     }
 }
 
+var val = 4
 
+print(val.edit(newValue: 7))
 
-
+print(val)
 
 
 
